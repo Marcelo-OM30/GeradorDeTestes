@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador Avançado de Casos de Teste</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador Avançado de Casos de Teste</h1>
+
+        <div class="fields-definition-section">
+            <h2>1. Definir Campos de Entrada</h2>
+            <div id="inputFieldsContainer">
+                <!-- Campos de entrada serão adicionados aqui -->
+            </div>
+            <button type="button" id="addInputFieldButton" class="control-button">Adicionar Campo de Entrada</button>
+        </div>
+
+        <div class="rules-engine-section">
+            <h2>2. Definir Regras de Teste (Avaliadas na Ordem)</h2>
+            <div id="rulesContainer">
+                <!-- As regras serão adicionadas aqui dinamicamente -->
+            </div>
+            <button type="button" id="addRuleButton" class="control-button">Adicionar Regra de Teste</button>
+            <hr>
+            <div class="rule-row outcome global-default-outcome">
+                <label for="defaultOutcome">Resultado Padrão Global (se nenhuma regra corresponder):</label>
+                <input type="text" id="defaultOutcome" value="Resultado Padrão">
+            </div>
+        </div>
+        
+        <button id="generateButton" class="control-button generate-main-button">Gerar Casos de Teste</button>
+
+        <h2>Casos de Teste Gerados (Formato Gherkin)</h2>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cenário de Teste</th>
+                    <th>Dado (Entradas)</th>
+                    <th>Quando (Ação)</th>
+                    <th>Então (Resultado Esperado)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As combinações serão inseridas aqui -->
+            </tbody>
+        </table>
+        <button id="exportToExcelButton" class="control-button">Exportar para Excel</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

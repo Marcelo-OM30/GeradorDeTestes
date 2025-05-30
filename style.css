@@ -1,0 +1,196 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 1000px; /* Aumentar largura para acomodar mais complexidade */
+    margin: auto;
+}
+
+h1, h2 {
+    color: #0056b3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+/* Seções Principais */
+.fields-definition-section,
+.rules-engine-section {
+    background-color: #fdfdff; /* Levemente diferente do container */
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    border: 1px solid #e0e0e0;
+}
+
+/* Definição de Campos de Entrada */
+.input-field-block {
+    border: 1px solid #d1e7fd;
+    background-color: #f2f8ff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+.input-field-block label {
+    font-weight: bold;
+    margin-right: 5px;
+    display: block;
+    margin-bottom: 5px;
+}
+.input-field-block input[type="text"],
+.input-field-block textarea {
+    width: calc(100% - 20px); /* Ajustar padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #b9d7f7;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+.input-field-block textarea {
+    min-height: 60px;
+    font-size: 0.9em;
+}
+
+/* Definição de Regras */
+.rule-block {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.rule-block h3 {
+    margin-top: 0;
+    font-size: 1.15em;
+    color: #0056b3;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+.conditions-container {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    border-left: 2px solid #007bff;
+}
+.condition-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    margin-bottom: 8px;
+    border-radius: 3px;
+}
+.condition-row select, .condition-row input {
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+.condition-row .field-select { flex-basis: 150px; }
+.condition-row .operator-select { flex-basis: 180px; }
+.condition-row .condition-value-input { flex-grow: 1; min-width: 150px; }
+
+
+.rule-row.outcome input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+}
+.global-default-outcome {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+}
+.global-default-outcome label {
+    font-weight: bold;
+}
+
+
+/* Botões */
+.control-button, .remove-button {
+    padding: 10px 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease;
+}
+.control-button:hover {
+    background-color: #0056b3;
+}
+.remove-button {
+    background-color: #dc3545;
+    padding: 6px 12px; /* Menor para botões de remoção */
+    font-size: 0.85em;
+}
+.remove-button:hover {
+    background-color: #c82333;
+}
+.add-condition-button {
+    background-color: #28a745; /* Verde */
+    margin-bottom:10px;
+}
+.add-condition-button:hover {
+    background-color: #218838;
+}
+
+.generate-main-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background-color: #198754; /* Verde mais escuro para botão principal */
+}
+.generate-main-button:hover{
+    background-color: #157347;
+}
+
+
+/* Tabela de Resultados */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+th, td {
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #e9ecef;
+    color: #212529;
+    white-space: nowrap;
+}
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 25px 0;
+}
