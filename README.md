@@ -9,6 +9,7 @@ Este projeto é uma ferramenta web para gerar casos de teste de forma combinató
 *   Motor de regras para definir resultados esperados com base em múltiplas condições.
 *   Geração de casos de teste em formato Gherkin (Dado, Quando, Então).
 *   Exportação dos casos de teste gerados para um arquivo Excel.
+*   Geração de esqueletos de teste no formato Cypress a partir dos casos de teste Gherkin.
 
 ## Como Usar
 
@@ -30,7 +31,7 @@ Nesta seção, você define os campos que farão parte das entradas dos seus cas
             *   Valores numéricos típicos (0, -1, 999999) se o nome do campo sugerir natureza numérica (ex: "valor", "id", "quantidade") ou se seus exemplos forem todos numéricos.
             *   `[NAO_NUMERICO]` se o campo parecer numérico mas você quiser testar uma entrada não numérica.
         *   Se você fornecer exemplos, o sistema tentará inferir o tipo de dado e pode complementar com menos placeholders automáticos se seus exemplos já cobrirem certas classes.
-    *   **Remover Campo:** Remove o bloco de definição do campo.
+    *   **Remover Campo:** Removes o bloco de definição do campo.
 
 ### 2. Definir Regras de Teste (Avaliadas na Ordem)
 
@@ -47,7 +48,7 @@ Aqui você define a lógica que determinará o resultado esperado ("Então") par
             *   **Valor de Referência:** O valor com o qual o campo selecionado será comparado usando o operador.
                 *   Para operadores de comprimento (ex: "Comprimento do Texto >="), este valor deve ser um número. Se não for um número, a condição será avaliada como falsa.
                 *   Para o operador "Está Vazio/Nulo", o "Valor de Referência" é ignorado.
-            *   **X (Remover Condição):** Remove a linha da condição.
+            *   **X (Remover Condição):** Removes a linha da condição.
     *   **Então Resultado =:** Defina o texto que aparecerá na cláusula "Então" do Gherkin se esta regra for aplicada. (Ex: "Login realizado com sucesso", "Mensagem de erro X exibida").
     *   **Remover Regra de Teste:** Remove todo o bloco da regra.
 
@@ -79,6 +80,16 @@ Uma tabela exibirá os casos de teste. Cada linha representa um caso de teste co
 ### 5. Exportar para Excel
 
 *   **Exportar para Excel (Botão):** Após gerar os casos de teste, clique neste botão para baixar um arquivo `.xlsx` contendo todos os casos de teste da tabela.
+
+### 6. Gerar Testes Cypress
+
+*   **Gerar Testes Cypress (Botão):** Após a geração dos casos de teste no formato Gherkin, clique neste botão.
+    *   O sistema irá (funcionalidade a ser implementada):
+        *   Analisar os casos de teste Gherkin gerados.
+        *   Formatar cada caso de teste como um esqueleto de teste Cypress.
+        *   Exibir os testes Cypress gerados na área de texto abaixo do botão.
+*   **Área de Texto (Testes Cypress):**
+    *   Uma área de texto (`textarea`) exibirá os testes formatados para Cypress. Este conteúdo pode ser copiado e colado em seus arquivos de teste Cypress.
 
 ## Exemplo de Preenchimento
 
