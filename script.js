@@ -453,4 +453,65 @@ document.addEventListener('DOMContentLoaded', () => {
     if (exportToExcelButton) {
         exportToExcelButton.addEventListener('click', exportToExcel);
     }
+    const generateCypressButton = document.getElementById('generateCypressButton');
+    const cypressTestsOutput = document.getElementById('cypressTestsOutput');
+    const resultsTable = document.getElementById('resultsTable').getElementsByTagName('tbody')[0];
+
+    if (generateCypressButton) {
+        generateCypressButton.addEventListener('click', () => {
+            cypressTestsOutput.value = ''; // Clear previous output
+            const rows = resultsTable.rows;
+            let cypressTestsString = `describe('Conjunto de Testes Gerados', () => {\n`;
+
+            if (rows.length === 0) {
+                cypressTestsOutput.value = "// Nenhum caso de teste Gherkin gerado para converter.";
+                return;
+            }
+
+            for (let i = 0; i < rows.length; i++) {
+                const cells = rows[i].cells;
+                // Assuming structure: ID, Cenário, Dado, Quando, Então
+                if (cells.length < 5) continue; // Skip if row doesn't have enough data
+
+                const testId = cells[0].textContent.trim();
+                const scenario = cells[1].textContent.trim();
+                const given = cells[2].textContent.trim().replace(/^Dado\s*/i, ''); // Remove "Dado "
+                const then = cells[4].textContent.trim().replace(/^Então\s*/i, ''); // Remove "Então "
+
+                // Sanitize scenario name for Cypress 'it' block
+                const sanitizedScenario = scenario.replace(/'/g, "\\'").replace(/\n/g, " ");
+
+                cypressTestsString += `\n  it('CT${testId}: ${sanitizedScenario}', () => {\n`;
+                cypressTestsString += `    // Cenário: ${scenario}\n`;
+                cypressTestsString += `    // Dado: ${given}\n`;
+                cypressTestsString += `    // TODO: Implementar os passos de setup (Dado)\n`;
+                cypressTestsString += `    // Exemplo: cy.visit('/');\n`;
+                
+                // Attempt to parse input fields from "Dado"
+                // This is a basic parser, might need refinement based on actual "Dado" format
+                const inputs = given.split(' E ');
+                inputs.forEach(input => {
+                    const parts = input.split(' é ');
+                    if (parts.length === 2) {
+                        const fieldName = parts[0].trim().replace(/"/g, '').replace(/\s+/g, '_').toLowerCase(); // e.g., "Nome do Campo" -> nome_do_campo
+                        const fieldValue = parts[1].trim().replace(/^"(.*)"$/, '$1'); // Remove surrounding quotes
+                        // Placeholder for interacting with an input field
+                        // You'll need to map fieldName to actual selectors
+                        cypressTestsString += `    // cy.get('[data-testid="${fieldName}"]').type('${fieldValue.replace(/'/g, "\\'")}');\n`;
+                    }
+                });
+
+                cypressTestsString += `\n    // TODO: Implementar a ação (Quando)\n`;
+                cypressTestsString += `    // Exemplo: cy.get('button[type="submit"]').click();\n`;
+
+                cypressTestsString += `\n    // Então: ${then}\n`;
+                cypressTestsString += `    // TODO: Implementar as asserções (Então)\n`;
+                cypressTestsString += `    // Exemplo: cy.get('.success-message').should('contain.text', '${then.replace(/'/g, "\\'")}');\n`;
+                cypressTestsString += `  });\n`;
+            }
+
+            cypressTestsString += `\n});\n`;
+            cypressTestsOutput.value = cypressTestsString;
+        });
+    }
 });
